@@ -1020,13 +1020,13 @@ creat_v2ray_json(){
 		local tls="null"
 
 		# tcp和kcp下tlsSettings为null，ws和h2下tlsSettings
-		[ -z "$ss_basic_v2ray_mux_concurrency" ] && local ss_basic_v2ray_mux_concurrency=8
+		[ -z "$ss_basic_v2ray_mux_concurrency" ] && local ss_basic_v2ray_mux_concurrency=16
 		[ "$ss_basic_v2ray_network_security" == "none" ] && local ss_basic_v2ray_network_security=""
 		#if [ "$ss_basic_v2ray_network" == "ws" -o "$ss_basic_v2ray_network" == "h2" ];then
 			case "$ss_basic_v2ray_network_security" in
 				tls)
 					local tls="{
-					\"allowInsecure\": true,
+					\"allowInsecure\": false,
 					\"serverName\": null
 					}"
 				;;
@@ -1204,7 +1204,7 @@ creat_v2ray_json(){
 						\"log\": {
 							\"access\": \"/dev/null\",
 							\"error\": \"/tmp/v2ray_log.log\",
-							\"loglevel\": \"error\"
+							\"loglevel\": \"none\"
 						},
 						\"inbound\": {
 							\"port\": 23456,
@@ -1228,7 +1228,18 @@ creat_v2ray_json(){
 									\"followRedirect\": true
 								}
 							}
-						]
+						],
+						\"policy\": {
+							\"levels\": {
+								\"1\": {
+									\"handshake\": 10,
+									\"connIdle\": 300,
+									\"uplinkOnly\": 0,
+									\"downlinkOnly\": 0,
+									\"bufferSize\": 0
+								}
+							}
+						}
 						}"
 		#local TEMPLATE=`cat /koolshare/ss/rules/v2ray_template.json`
 		echo_date 解析V2Ray配置文件...
@@ -1816,14 +1827,10 @@ detect(){
 	if [ "$ss_basic_type" == "3" ];then
 		SWAPSTATUS=`free|grep Swap|awk '{print $2}'`
 		if [ "$SWAPSTATUS" != "0" ];then
-			echo_date "你选择了v2ray节点，当前系统已经启用虚拟内存！！符合启动条件！"
+			echo_date "你选择了v2ray节点，当前系统符合启动条件！"
 		else
-			echo_date "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-			echo_date "+          你选择了v2ray节点，而当前系统未启用虚拟内存！               +"
-			echo_date "+        v2ray程序对路由器开销极大，请挂载虚拟内存后再开启！            +"
-			echo_date "+       如果使用 ws + tls + web 方案，建议1G虚拟内存，以保证稳定！     +"
-			echo_date "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-			close_in_five
+			echo_date "你选择了v2ray节点，当前系统符合启动条件！！"
+			#close_in_five
 		fi
 	fi
 	
