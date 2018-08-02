@@ -1162,7 +1162,7 @@ function add_ss_node_conf(flag) { //点击添加按钮动作
 				ns["ssconf_basic_server_" + node_global_max] = vmess_node.add;
 				ns["ssconf_basic_port_" + node_global_max] = vmess_node.port;
 				ns["ssconf_basic_v2ray_uuid_" + node_global_max] = vmess_node.id;
-				ns["ssconf_basic_v2ray_security_" + node_global_max] = "auto";
+				ns["ssconf_basic_v2ray_security_" + node_global_max] = "chacha20-poly1305";
 				ns["ssconf_basic_v2ray_alterid_" + node_global_max] = vmess_node.aid;
 				ns["ssconf_basic_v2ray_network_" + node_global_max] = vmess_node.net;
 				if(vmess_node.net == "tcp"){
@@ -1172,6 +1172,7 @@ function add_ss_node_conf(flag) { //点击添加按钮动作
 				}
 				ns["ssconf_basic_v2ray_network_host_" + node_global_max] = vmess_node.host;
 				ns["ssconf_basic_v2ray_network_path_" + node_global_max] = vmess_node.path;
+				ns["ssconf_basic_v2ray_network_security_" + node_global_max] = vmess_node.tls;
 				ns["ssconf_basic_v2ray_mux_enable_" + node_global_max] = 1;
 				ns["ssconf_basic_v2ray_mux_concurrency_" + node_global_max] = 8;
 				ns["ssconf_basic_v2ray_use_json_" + node_global_max] = 0;
