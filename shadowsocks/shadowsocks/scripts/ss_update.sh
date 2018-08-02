@@ -5,8 +5,8 @@
 
 eval `dbus export ss`
 alias echo_date='echo 【$(TZ=UTC-8 date -R +%Y年%m月%d日\ %X)】:'
-main_url="https://raw.githubusercontent.com/koolshare/koolshare.github.io/acelan_softcenter_ui/shadowsocks"
-backup_url="http://koolshare.ngrok.wang:5000/shadowsocks"
+main_url="https://raw.githubusercontent.com/ki8852/koolshare.github.io/acelan_softcenter_ui/shadowsocks"
+backup_url="http://www.baidu.com"
 
 install_ss(){
 	echo_date 开始解压压缩包...
