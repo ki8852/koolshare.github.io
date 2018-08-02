@@ -1828,7 +1828,7 @@ function updatelist(action) {
 
 function version_show() {
 	$.ajax({
-		url: 'https://koolshare.ngrok.wang/shadowsocks/config.json.js',
+		url: 'https://raw.githubusercontent.com/ki8852/koolshare.github.io/acelan_softcenter_ui/shadowsocks/config.json.js',
 		type: 'GET',
 		dataType: 'jsonp',
 		success: function(res) {
