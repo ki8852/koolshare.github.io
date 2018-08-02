@@ -1026,7 +1026,7 @@ creat_v2ray_json(){
 			case "$ss_basic_v2ray_network_security" in
 				tls)
 					local tls="{
-					\"allowInsecure\": false,
+					\"allowInsecure\": true,
 					\"serverName\": null
 					}"
 				;;
@@ -1188,6 +1188,17 @@ creat_v2ray_json(){
 					"mux": {
 						"enabled": $(get_function_switch $ss_basic_v2ray_mux_enable),
 						"concurrency": $ss_basic_v2ray_mux_concurrency
+					}
+				},
+				"policy": {
+				        "levels": {
+						"1": {
+							"handshake": 10,
+							"connIdle": 300,
+							"uplinkOnly": 0,
+							"downlinkOnly": 0,
+							"bufferSize": 0
+						}
 					}
 				}
 			}
